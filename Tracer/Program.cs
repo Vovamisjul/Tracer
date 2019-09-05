@@ -10,6 +10,7 @@ namespace Tracer
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("aaaa");
         }
     }
 }
