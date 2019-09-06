@@ -18,11 +18,11 @@ namespace Tracer.Tracer
 
         public void StartTrace()
         {
-            var stackFrame = new StackFrame(1);
-            stackFrame.GetMethod();
-            if (traceResult.threads.Any(elem => elem.Id == Thread.CurrentThread.ManagedThreadId))
-                traceResult.threads
-
+            var method = new StackFrame(1).GetMethod();
+            if (traceResult.threads.ContainsKey(Thread.CurrentThread.ManagedThreadId))
+                traceResult.threads[Thread.CurrentThread.ManagedThreadId].methods.StartTrace(method);
+            else
+                traceResult.AddNewThread(Thread.CurrentThread.ManagedThreadId, method);
 
         }
 
