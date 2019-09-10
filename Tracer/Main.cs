@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Tracing.Serializer;
 using Tracing.Trace;
 
 namespace TracerProgram
@@ -14,13 +15,14 @@ namespace TracerProgram
         static void Main(string[] args)
         {
             tracer.StartTrace();
-            Console.WriteLine("aaaa");
+            Console.WriteLine("main");
             A a = new A(tracer);
             a.kek();
             a.lol();
             tracer.StopTrace();
             var result = tracer.GetTraceResult();
-            Console.WriteLine(result);
+            Console.WriteLine(new XmlTraceSerializer().Serialize(result));
+            Console.ReadLine();
         }
     }
 

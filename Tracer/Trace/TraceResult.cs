@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Tracing.Trace
 {
-    class TraceResult
+    public class TraceResult
     {
         private List<MeasuredThread> threads = new List<MeasuredThread>();
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -35,7 +35,7 @@ namespace Tracing.Trace
         }
     }
 
-    class MeasuredMethod
+    public class MeasuredMethod
     {
         public string MethodName { get; set; }
         public string ClassName { get; set; }
@@ -56,7 +56,7 @@ namespace Tracing.Trace
         }
     }
 
-    class MeasuredThread
+    public class MeasuredThread
     {
         public long Time { set; get; }
         public List<MeasuredMethod> Methods = new List<MeasuredMethod>();
