@@ -2,18 +2,37 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace Tracer
+namespace Tracer.Tracer
 
 {
     class TraceResult
     {
-        public ConcurrentDictionary<int, MeasuredThread> threads = new ConcurrentDictionary<int, MeasuredThread>();
-
-        public void AddNewThread(int id, MethodBase method)
+        private List<MeasuredThread> threads = new List<MeasuredThread>();
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void TryAddNewThread(int id, MethodBase method)
         {
-            threads.TryAdd(id, new MeasuredThread(method));
+            bool find = false;
+            foreach (var thread in threads)
+            {
+                if (thread.Id == id)
+                {
+                    thread.AddNewMethod(new MeasuredMethod(method));
+                    find = true;
+                }
+            }
+            if (!find)
+                threads.Add(new MeasuredThread(id, method));
+        }
+
+        public void StopTrace()
+        {
+            foreach (var thread in threads)
+            {
+                thread.StopTrace();
+            }
         }
     }
 
@@ -24,13 +43,11 @@ namespace Tracer
         public long Time { get; set; }
         public List<MeasuredMethod> Methods = new List<MeasuredMethod>();
         private Stopwatch Watch { get; set; } = new Stopwatch();
-        private int _currentMethod = 0;
 
         public MeasuredMethod(MethodBase method)
         {
             MethodName = method.Name;
             ClassName = method.DeclaringType.Name;
-            Methods.Add(new MeasuredMethod(method));
             Watch.Start();
         }
         public void StopTrace()
@@ -44,15 +61,26 @@ namespace Tracer
     {
         public long Time { set; get; }
         public List<MeasuredMethod> Methods = new List<MeasuredMethod>();
+        public int Id { set; get; }
         private Stack<MeasuredMethod> _stackMethods = new Stack<MeasuredMethod>();
-        public MeasuredThread(MethodBase method)
+        public MeasuredThread(int id, MethodBase method)
         {
+            Id = id;
             var newMethod = new MeasuredMethod(method);
             if (_stackMethods.Count == 0)
                 Methods.Add(newMethod);
             else
                 _stackMethods.Peek().Methods.Add(newMethod);
             _stackMethods.Push(newMethod);
+        }
+
+        public void AddNewMethod(MeasuredMethod method)
+        {
+            if (_stackMethods.Count == 0)
+                Methods.Add(method);
+            else
+                _stackMethods.Peek().Methods.Add(method);
+            _stackMethods.Push(method);
         }
         public void StopTrace()
         {
