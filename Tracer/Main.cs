@@ -22,6 +22,7 @@ namespace TracerProgram
             tracer.StopTrace();
             var result = tracer.GetTraceResult();
             Console.WriteLine(new XmlTraceSerializer().Serialize(result));
+            Console.WriteLine(new JsonTraceSerializer().Serialize(result));
             Console.ReadLine();
         }
     }

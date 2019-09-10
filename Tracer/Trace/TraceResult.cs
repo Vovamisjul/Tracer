@@ -4,12 +4,13 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace Tracing.Trace
 {
     public class TraceResult
     {
-        private List<MeasuredThread> threads = new List<MeasuredThread>();
+        public List<MeasuredThread> threads = new List<MeasuredThread>();
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void TryAddNewThread(int id, MethodBase method)
         {
@@ -49,6 +50,7 @@ namespace Tracing.Trace
             ClassName = method.DeclaringType.Name;
             Watch.Start();
         }
+        MeasuredMethod() { }
         public void StopTrace()
         {
             Watch.Stop();
@@ -58,9 +60,9 @@ namespace Tracing.Trace
 
     public class MeasuredThread
     {
+        public int Id { set; get; }
         public long Time { set; get; }
         public List<MeasuredMethod> Methods = new List<MeasuredMethod>();
-        public int Id { set; get; }
         private Stack<MeasuredMethod> _stackMethods = new Stack<MeasuredMethod>();
         public MeasuredThread(int id, MethodBase method)
         {
@@ -72,6 +74,7 @@ namespace Tracing.Trace
                 _stackMethods.Peek().Methods.Add(newMethod);
             _stackMethods.Push(newMethod);
         }
+        MeasuredThread() { }
 
         public void AddNewMethod(MeasuredMethod method)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tracing.Trace
 {
-    class Tracer : ITracer
+    public class Tracer : ITracer
     {
         TraceResult traceResult = new TraceResult();
         public TraceResult GetTraceResult()

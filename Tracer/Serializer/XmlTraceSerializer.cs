@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 using Tracing.Trace;
 
@@ -13,13 +14,18 @@ namespace Tracing.Serializer
     {
         public string Serialize(TraceResult value)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(value.GetType());
-
-            using (StringWriter textWriter = new StringWriter())
+            if (value == null)
             {
-                xmlSerializer.Serialize(textWriter, value);
-                return textWriter.ToString();
+                return string.Empty;
             }
+            
+                var xmlserializer = new XmlSerializer(value.GetType());
+                var stringWriter = new StringWriter();
+                using (var writer = XmlWriter.Create(stringWriter, new XmlWriterSettings() { Indent = true, IndentChars = "\t" }))
+                {
+                    xmlserializer.Serialize(writer, value);
+                    return stringWriter.ToString();
+                }
         }
     }
 }
