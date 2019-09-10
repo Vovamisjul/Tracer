@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TracerImpl;
+using Tracing.Trace;
 
 namespace TracerProgram
 {
@@ -42,7 +42,7 @@ namespace TracerProgram
         {
             tracer.StartTrace();
             Thread.Sleep(100);
-            Console.WriteLine("a.kek()");
+            Console.WriteLine("a.lol()");
             new B(tracer).kek();
             tracer.StopTrace();
         }
@@ -65,7 +65,7 @@ namespace TracerProgram
         {
             tracer.StartTrace();
             Thread.Sleep(100);
-            Console.WriteLine("b.kek()");
+            Console.WriteLine("b.lol()");
             tracer.StopTrace();
         }
     }

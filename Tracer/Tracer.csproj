@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tracer\ITracer.cs" />
+    <Compile Include="Trace\ITracer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tracer\TraceResult.cs" />
-    <Compile Include="Tracer\Tracer.cs" />
+    <Compile Include="Trace\TraceResult.cs" />
+    <Compile Include="Trace\Tracer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

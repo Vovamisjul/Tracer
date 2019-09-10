@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Tracer.Tracer;
 
-namespace TracerImpl
+namespace Tracing.Trace
 {
     class Tracer : ITracer
     {

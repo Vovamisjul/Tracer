@@ -5,8 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace Tracer.Tracer
-
+namespace Tracing.Trace
 {
     class TraceResult
     {

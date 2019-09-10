@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tracer.Tracer;
 
-namespace Tracer.Tracer
+namespace Tracing.Trace
 {
     interface ITracer
     {
