@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerConsole", "TracerConsole\TracerConsole.csproj", "{2DAEC548-FD1D-41BC-AC60-BBED2435E49D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer.Tests", "Tracer.Tests\Tracer.Tests.csproj", "{A49F4DAA-33E7-47FB-AE6D-188B13D548D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2DAEC548-FD1D-41BC-AC60-BBED2435E49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DAEC548-FD1D-41BC-AC60-BBED2435E49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DAEC548-FD1D-41BC-AC60-BBED2435E49D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49F4DAA-33E7-47FB-AE6D-188B13D548D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49F4DAA-33E7-47FB-AE6D-188B13D548D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49F4DAA-33E7-47FB-AE6D-188B13D548D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49F4DAA-33E7-47FB-AE6D-188B13D548D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
