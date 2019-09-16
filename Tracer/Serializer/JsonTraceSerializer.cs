@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Tracing.Serializer
 {
-    class JsonTraceSerializer : ISerializable
+    public class JsonTraceSerializer : ISerializable
     {
         public string Serialize(TraceResult value)
         {

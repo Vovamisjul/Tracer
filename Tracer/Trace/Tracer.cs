@@ -13,6 +13,7 @@ namespace Tracing.Trace
         TraceResult traceResult = new TraceResult();
         public TraceResult GetTraceResult()
         {
+            traceResult.CalculateTime();
             return traceResult;
         }
 
@@ -25,7 +26,7 @@ namespace Tracing.Trace
 
         public void StopTrace()
         {
-            traceResult.StopTrace();
+            traceResult.StopTrace(Thread.CurrentThread.ManagedThreadId);
         }
     }
 }

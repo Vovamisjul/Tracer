@@ -27,11 +27,25 @@ namespace Tracing.Trace
                 threads.Add(new MeasuredThread(id, method));
         }
 
-        public void StopTrace()
+        public void StopTrace(int id)
         {
             foreach (var thread in threads)
             {
-                thread.StopTrace();
+                if (thread.Id == id)
+                {
+                    thread.StopTrace();
+                }
+            }
+        }
+
+        public void CalculateTime()
+        {
+            foreach (var thread in threads)
+            {
+                foreach (var method in thread.Methods)
+                {
+                    thread.Time += method.Time;
+                }
             }
         }
     }

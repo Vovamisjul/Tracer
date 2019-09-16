@@ -10,7 +10,7 @@ using Tracing.Trace;
 
 namespace Tracing.Serializer
 {
-    class XmlTraceSerializer : ISerializable
+    public class XmlTraceSerializer : ISerializable
     {
         public string Serialize(TraceResult value)
         {

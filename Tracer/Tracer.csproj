@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger\ConsoleLogger.cs" />
+    <Compile Include="Logger\FileLogger.cs" />
+    <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Serializer\ISerializable.cs" />
     <Compile Include="Serializer\JsonTraceSerializer.cs" />
     <Compile Include="Serializer\XmlTraceSerializer.cs" />
